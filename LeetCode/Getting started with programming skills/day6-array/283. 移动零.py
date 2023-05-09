@@ -3,12 +3,14 @@
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+
         n = len(nums)
         left = right = 0
         while right < n:
             if nums[right] != 0:
-                nums[left], nums[right] = nums[right], nums[left]
+                nums[left] , nums[right] = nums[right] , nums[left]
                 left += 1
             right += 1
-
-# https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan&id=programming-skills-beginner&plan=programming-skills&plan_progress=x5t930sg
