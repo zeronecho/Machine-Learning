@@ -3,17 +3,33 @@
 # 重构后的矩阵需要将原始矩阵的所有元素以相同的 行遍历顺序 填充。
 # 如果具有给定参数的 reshape 操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。
 
-# https://leetcode.cn/problems/reshape-the-matrix/?envType=study-plan&id=programming-skills-beginner&plan=programming-skills&plan_progress=x5t930sg
 
 class Solution:
-    def matrixReshape(self, nums: List[List[int]], r: int, c: int) -> List[List[int]]:
-        m, n = len(nums), len(nums[0])
-        if m * n != r * c:
-            return nums
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        # 检查是否可重塑
+        if r * c != len(mat) * len(mat[0]):
+            return mat
 
-        ans = [[0] * c for _ in range(r)]
-        for x in range(m * n):
-            ans[x // c][x % c] = nums[x // n][x % n]
+        # 将二维列表展平为一维
+        flat_list = [num for row in mat for num in row]
 
-        return ans
+        # 创建新矩阵
+        new_matrix = []
+        for i in range(r):
+            row = flat_list[i*c:(i+1)*c]
+            new_matrix.append(row)
+
+        return new_matrix
+
+    # # 官方题解：思路很好 值得学习
+    # def matrixReshape(self, nums: List[List[int]], r: int, c: int) -> List[List[int]]:
+    #     m, n = len(nums), len(nums[0])
+    #     if m * n != r * c:
+    #         return nums
+    #
+    #     ans = [[0] * c for _ in range(r)]
+    #     for x in range(m * n):
+    #         ans[x // c][x % c] = nums[x // n][x % n]
+    #
+    #     return ans
 
