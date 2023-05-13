@@ -687,11 +687,153 @@ print(total_sum)  # 输出 45
 
 这个例子中，首先定义了一个二维列表“matrix”，然后使用嵌套的“sum”函数计算每行元素的和，并使用外层的“sum”函数计算所有和的总和，即整个二维列表中所有元素的和。
 
-# DAY 7：数组
+# DAY 8：字符串
 
+## 389. 找不同
 
+### ord() 函数
 
+在 Python 中，ord() 是一个内置函数，用于将一个字符（字符串中只含有一个字符）转换成对应的 Unicode 码点（整数）。
 
+其语法为：
+
+```python
+ord(c)
+```
+
+其中 c 是要转换成 Unicode 码点的字符。ord() 函数返回该字符的 Unicode 码点。
+
+例如：
+
+```python
+>>> ord('a')
+97
+>>> ord('A')
+65
+>>> ord('0')
+48
+>>> ord('中')
+20013
+```
+
+ord() 函数的返回值是一个整数，表示字符在 Unicode 编码中的码点。这个码点可以用来进行字符的比较、排序等操作。需要注意的是，Python 中的字符串是 Unicode 字符串，因此 ord() 函数可以用于处理各种语言的字符，而不仅仅是 ASCII 码表中的字符。
+
+需要注意的是，在 Python 2.x 版本中，ord() 函数的行为与 Python 3.x 版本略有不同。在 Python 2.x 中，ord() 函数只接受长度为 1 的字符串作为参数，而在 Python 3.x 中，ord() 函数可以接受任意长度的字符串，但只返回第一个字符的码点。
+
+## 1678. 设计 Goal 解析器
+
+### 字符串的替换操作
+
+字符串替换是将一个或多个指定的字符串替换为另一个字符串的操作。在 Python 中，可以使用 replace 方法实现字符串替换。replace 方法有两个参数，第一个参数是要替换的子串，第二个参数是替换后的新字符串。
+
+以下是字符串替换的示例代码：
+
+```python
+str1 = "Hello, World!"
+
+# 使用 replace 方法将字符串中的 "Hello" 替换为 "Hi"
+str2 = str1.replace("Hello", "Hi")
+print(str2) # 输出 "Hi, World!"
+```
+
+另外，字符串的格式化操作中，也可以使用字符串的 replace 方法实现占位符的替换，例如：
+
+```python
+name = "Tom"
+age = 18
+
+# 使用字符串的 replace 方法将占位符 {name} 和 {age} 替换为实际的值
+str1 = "My name is {name}, and I'm {age} years old.".replace("{name}", name).replace("{age}", str(age))
+print(str1) # 输出 "My name is Tom, and I'm 18 years ol
+```
+
+### 字符串的其他操作
+
+常用的字符串操作及其代码示例：
+
+1. 拼接字符串
+
+字符串拼接是将两个或多个字符串连接在一起的操作，可以使用 "+" 运算符或 join 方法。
+
+```python
+# 使用 "+" 运算符拼接字符串
+str1 = "Hello"
+str2 = "World"
+str3 = str1 + " " + str2
+print(str3) # 输出 "Hello World"
+
+# 使用 join 方法拼接字符串
+str_list = ["Hello", "World"]
+separator = " "
+str4 = separator.join(str_list)
+print(str4) # 输出 "Hello World"
+```
+
+1. 查找子串
+
+在字符串中查找子串可以使用 find、index、rfind、rindex、startswith、endswith 等方法。
+
+```python
+str1 = "Hello, World!"
+
+# 使用 find 方法查找子串，如果找到了则返回子串的位置，否则返回 -1
+print(str1.find("World")) # 输出 7
+
+# 使用 index 方法查找子串，如果找到了则返回子串的位置，否则抛出 ValueError 异常
+print(str1.index("World")) # 输出 7
+
+# 使用 startswith 方法判断字符串是否以特定的子串开头，返回 True 或 False
+print(str1.startswith("Hello")) # 输出 True
+
+# 使用 endswith 方法判断字符串是否以特定的子串结尾，返回 True 或 False
+print(str1.endswith("!")) # 输出 True
+```
+
+1. 切片字符串
+
+可以使用 [start : end : step] 的形式对字符串进行切片，其中 start 表示起始位置，end 表示结束位置（不包含），step 表示步长（默认为 1）。
+
+```python
+str1 = "Hello, World!"
+
+# 获取从位置 0 到位置 5（不包含）的子串
+print(str1[0:5]) # 输出 "Hello"
+
+# 获取从位置 7 到字符串末尾的子串
+print(str1[7:]) # 输出 "World!"
+
+# 获取从位置 0 到字符串末尾的子串，并以步长为 2 进行切片
+print(str1[::2]) # 输出 "Hlo ol!"
+```
+
+1. 分割字符串
+
+可以使用 split 方法将字符串按照特定的分隔符拆分成一个列表。
+
+```python
+str1 = "Hello,World,Python"
+
+# 使用 split 方法将字符串按照逗号拆分成一个列表
+str_list = str1.split(",")
+print(str_list) # 输出 ["Hello", "World", "Python"]
+```
+
+1. 格式化字符串
+
+可以使用 format 或 f-string（Python 3.6+）将变量的值插入到字符串中。
+
+```python
+name = "Tom"
+age = 18
+
+# 使用 format 方法将变量插入到字符串中
+str1 = "My name is {0}, and I'm {1} years old.".format(name, age)
+print(str1) # 输出 "My name is Tom, and I'm 18 years old."
+
+# 使用 f-string 将变量插入到字符串中（Python 3.6+）
+str2 = f"My name is {name}, and I'm {age} years old."
+print(str2) # 输出 "My name is Tom, and I'm 
+```
 
 
 

@@ -5,12 +5,22 @@
 # 给你字符串 command ，返回 Goal 解析器 对 command 的解释结果。
 
 class Solution:
+
     def interpret(self, command: str) -> str:
-        res = []
-        for i, c in enumerate(command):
-            if c == 'G':
-                res.append(c)
-            elif c == '(':
-                res.append('o' if command[i + 1] == ')' else 'al')
-        return ''.join(res)
+        # 将 "()" 替换为 "o"
+        command = command.replace("()", "o")
+        # 将 "(al)" 替换为 "al"
+        command = command.replace("(al)", "al")
+        # 返回替换后的结果
+        return command
+
+    # # 官方题解：使用遍历
+    # def interpret(self, command: str) -> str:
+    #     res = []
+    #     for i, c in enumerate(command):
+    #         if c == 'G':
+    #             res.append(c)
+    #         elif c == '(':
+    #             res.append('o' if command[i + 1] == ')' else 'al')
+    #     return ''.join(res)
 
